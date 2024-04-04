@@ -121,8 +121,8 @@ def calculate_topk_accuracy(model, test_loader, k):
     y_pred_probs = []
     with torch.no_grad():
         for inputs, labels in test_loader:
-            # inputs, labels = inputs.to(device), labels.to(device)
-            # outputs = model(inputs)
+            inputs, labels = inputs.to(device), labels.to(device)
+            outputs = model(inputs)
             probabilities = torch.softmax(outputs, dim=1)
             y_pred_probs.extend(probabilities.cpu().numpy())
             y_true.extend(labels.cpu().numpy())
